@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <h2>Form submit result:</h2>
-      <code>{JSON.stringify(result, null, 2)}</code>
+      <pre>{JSON.stringify(result, null, 2)}</pre>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}

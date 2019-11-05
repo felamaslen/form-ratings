@@ -1,5 +1,7 @@
 .App {
+  margin: 0 auto;
   text-align: center;
+  max-width: 500px;
 }
 
 .App-logo {
@@ -19,4 +21,12 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+pre {
+  text-align: left;
+  border: 1px solid #e3e3e3;
+  background: #efefef;
+  font-family: hack, monospace;
+  font-size: 10pt;
 }
