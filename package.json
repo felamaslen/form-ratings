@@ -1,0 +1,52 @@
+{
+  "name": "form-ratings",
+  "description": "Formik component for star ratings",
+  "version": "0.0.1",
+  "private": false,
+  "keywords": [],
+  "author": "felamaslen",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "start": "rollup -c -w",
+    "prepare": "npm run build",
+    "predeploy": "cd example && npm install && npm run build",
+    "deploy": "gh-pages -d example/build",
+    "prepublish": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "formik": "^2.0.0",
+    "prop-types": "^15.5.4",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "dependencies": {
+    "memoize-one": "^5.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@svgr/rollup": "^4.3.3",
+    "formik": "^2.0.3",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "rollup": "^1.26.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-url": "^3.0.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.6.4"
+  }
+}
