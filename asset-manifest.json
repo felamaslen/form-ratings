@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/form-ratings/static/css/main.b100e6da.chunk.css",
-    "main.js": "/form-ratings/static/js/main.9bfe5da0.chunk.js",
-    "main.js.map": "/form-ratings/static/js/main.9bfe5da0.chunk.js.map",
+    "main.css": "/form-ratings/static/css/main.0d77d0f3.chunk.css",
+    "main.js": "/form-ratings/static/js/main.ad923bb0.chunk.js",
+    "main.js.map": "/form-ratings/static/js/main.ad923bb0.chunk.js.map",
     "runtime-main.js": "/form-ratings/static/js/runtime-main.010d0c38.js",
     "runtime-main.js.map": "/form-ratings/static/js/runtime-main.010d0c38.js.map",
     "static/js/2.3e50480d.chunk.js": "/form-ratings/static/js/2.3e50480d.chunk.js",
     "static/js/2.3e50480d.chunk.js.map": "/form-ratings/static/js/2.3e50480d.chunk.js.map",
     "index.html": "/form-ratings/index.html",
-    "precache-manifest.bb0373a69f674aa1df0b1637cdec2b88.js": "/form-ratings/precache-manifest.bb0373a69f674aa1df0b1637cdec2b88.js",
+    "precache-manifest.587ec985651e31ab12dab90b2d08356d.js": "/form-ratings/precache-manifest.587ec985651e31ab12dab90b2d08356d.js",
     "service-worker.js": "/form-ratings/service-worker.js",
-    "static/css/main.b100e6da.chunk.css.map": "/form-ratings/static/css/main.b100e6da.chunk.css.map"
+    "static/css/main.0d77d0f3.chunk.css.map": "/form-ratings/static/css/main.0d77d0f3.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.010d0c38.js",
     "static/js/2.3e50480d.chunk.js",
-    "static/css/main.b100e6da.chunk.css",
-    "static/js/main.9bfe5da0.chunk.js"
+    "static/css/main.0d77d0f3.chunk.css",
+    "static/js/main.ad923bb0.chunk.js"
   ]
 }
