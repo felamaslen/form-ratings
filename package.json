@@ -3,7 +3,13 @@
   "description": "Formik component for star ratings",
   "version": "0.1.0",
   "private": false,
-  "keywords": [],
+  "keywords": [
+    "form",
+    "formik",
+    "star",
+    "rating"
+  ],
+  "website": "https://github.com/felamaslen/form-ratings",
   "author": "felamaslen",
   "license": "MIT",
   "main": "dist/index.js",
