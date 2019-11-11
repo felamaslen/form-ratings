@@ -2,12 +2,10 @@ import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { connect, FormikContextType } from 'formik';
 
-import { StarContainer as Star } from './star';
+import { Stars } from './stars';
 import { COLOR_RATED, COLOR_HOVER } from './constants';
 
-const flex = {
-  display: 'inline-flex',
-};
+export { Stars } from './stars';
 
 interface IProps {
   name: string,
@@ -34,31 +32,18 @@ const RatingsField: React.FC<IProps & {
     ? COLOR_HOVER
     : COLOR_RATED;
 
-  const stars = new Array(5).fill(0)
-    .map((item, index) => ({
-      key: `star-${index}`,
-      fraction: rating > index + 1
-        ? 1
-        : Math.max(0, rating - index),
-    }));
-
   return (
     <div
       className="form-ratings"
       onMouseLeave={onReset}
       onBlur={onReset}
-      style={flex}
     >
-      {stars.map(({ key, fraction }, index) => (
-        <Star
-          key={key}
-          fraction={fraction}
-          onHover={setHoverRating}
-          onChange={onChange}
-          hoverRating={index + 1}
-          color={color}
-        />
-      ))}
+      <Stars
+        value={rating}
+        onHover={setHoverRating}
+        onChange={onChange}
+        color={color}
+      />
     </div>
   );
 };
