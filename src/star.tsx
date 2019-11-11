@@ -1,14 +1,16 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import { COLOR_RATED, COLOR_OUTLINE } from './constants';
+import { Segment } from './types';
+
+import { COLOR_RATED, COLOR_OUTLINE, DEFAULT_SCALE } from './constants';
 
 import {
   fracWhole,
   generateStarFraction,
 } from './svg';
 
-const drawPath = (scale, path) => path
+const drawPath = (scale: number, path: Segment[]): string => path
   .map(([op, ...points]) => `${op} ${points
     .map((value) => {
       if (Array.isArray(value)) {
@@ -21,7 +23,17 @@ const drawPath = (scale, path) => path
   }`)
   .join(' ');
 
-const Star = ({ fraction, scale, color }) => (
+interface IProps {
+  fraction: number,
+  scale?: number,
+  color?: string,
+}
+
+export const Star: React.FC<IProps> = ({
+  fraction,
+  scale = DEFAULT_SCALE,
+  color = COLOR_RATED,
+}) => (
   <svg width={scale} height={scale}>
     {fraction === 1 && (
       <path
@@ -38,7 +50,7 @@ const Star = ({ fraction, scale, color }) => (
           d={drawPath(scale, path)}
           stroke={color}
           strokeWidth={1}
-          fill={COLOR_RATED}
+          fill={color}
         />
       ))}
     <path
@@ -50,26 +62,27 @@ const Star = ({ fraction, scale, color }) => (
   </svg>
 );
 
-Star.propTypes = {
-  fraction: PropTypes.number.isRequired,
-  color: PropTypes.string.isRequired,
-  scale: PropTypes.number,
-};
+interface ContainerProps {
+  fraction: number,
+  onHover?: (rating: number) => void,
+  onChange?: (rating: number) => void,
+  hoverRating?: number,
+  color: string,
+}
 
-Star.defaultProps = {
-  scale: 24,
-};
-
-function StarContainer({
+export function StarContainer({
   fraction,
   onHover,
   onChange,
-  hoverRating,
+  hoverRating = 0,
   color,
-}) {
-  const onMouseOver = useCallback(() => onHover(hoverRating), [onHover, hoverRating]);
-  const onClick = useCallback(() => onChange(hoverRating), [onChange, hoverRating]);
+}: ContainerProps) {
+  const onMouseOver = useCallback(() => onHover && onHover(hoverRating), [onHover, hoverRating]);
+  const onClick = useCallback(() => onChange && onChange(hoverRating), [onChange, hoverRating]);
   const onKeyDown = useCallback((event) => {
+    if (!onChange) {
+      return;
+    }
     if (event.key === 'Enter') {
       onChange(hoverRating);
     }
@@ -92,13 +105,3 @@ function StarContainer({
     </div>
   );
 }
-
-StarContainer.propTypes = {
-  fraction: PropTypes.number.isRequired,
-  onHover: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  hoverRating: PropTypes.number.isRequired,
-  color: PropTypes.string.isRequired,
-};
-
-export default StarContainer;

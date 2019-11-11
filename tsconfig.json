@@ -4,11 +4,14 @@
     "target": "es6",
     "jsx": "react",
     "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true
+    "allowSyntheticDefaultImports": true,
+    "strict": true
   },
-  "exclude": {
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
     "node_modules"
-  }
+  ]
 }

@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c",
+    "build": "TS_ROLLUP_CLEAN=true rollup -c",
     "start": "rollup -c -w",
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
@@ -43,6 +43,8 @@
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@svgr/rollup": "^4.3.3",
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.9.4",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
     "eslint": "^6.1.0",
@@ -59,7 +61,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-typescript": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.25.2",
     "rollup-plugin-url": "^3.0.0",
     "tslib": "^1.10.0",
     "typescript": "^3.6.4"
