@@ -10,7 +10,16 @@
     "rating"
   ],
   "website": "https://github.com/felamaslen/form-ratings",
-  "author": "felamaslen",
+  "homepage": "https://github.com/felamaslen/form-ratings#readme",
+  "bugs": {
+    "url": "https://github.com/felamaslen/form-ratings/issues",
+    "email": "felamaslen@gmail.com"
+  },
+  "author": "Fela Maslen <felamaslen@gmail.com> (https://github.com/felamaslen)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/felamaslen/form-ratings.git"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
