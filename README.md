@@ -10,6 +10,10 @@
 npm install --save form-ratings
 ```
 
+## Live demo
+
+Please see [here](https://felamaslen.github.io/form-ratings/) for a live demo!
+
 ## Usage
 
 The following would be placed inside a `<Formik />` form:
