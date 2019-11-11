@@ -1,6 +1,10 @@
 ## [0.1.2] - 2019-11-11
 ### Added
 - This changelog
+- Typescript types
+
+### Changed
+- Export <Stars /> as a static component independent of Formik
 
 ## [0.1.1] - 2019-11-06
 ### Added
