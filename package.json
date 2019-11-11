@@ -37,9 +37,7 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
-  "dependencies": {
-    "memoize-one": "^5.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@svgr/rollup": "^4.3.3",

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import { Segment } from './types';
+import { Segment, StarPart } from './types';
 
 import { COLOR_RATED, COLOR_OUTLINE, DEFAULT_SCALE } from './constants';
 
@@ -38,27 +38,36 @@ export const Star: React.FC<IProps> = ({
     {fraction === 1 && (
       <path
         d={drawPath(scale, fracWhole)}
-        stroke="none"
-        strokeWidth={0}
+        stroke={color}
+        strokeWidth={1}
         fill={color}
       />
     )}
-    {fraction > 0 && fraction < 1 && generateStarFraction(fraction)
-      .map(({ path, key }) => (
+    {fraction > 0 && fraction < 1 && (
+      <>
         <path
-          key={key}
-          d={drawPath(scale, path)}
-          stroke={color}
-          strokeWidth={1}
+          d={drawPath(scale, fracWhole)}
+          stroke="none"
           fill={color}
         />
-      ))}
-    <path
-      d={drawPath(scale, fracWhole)}
-      stroke={fraction > 0 ? color : COLOR_OUTLINE}
-      strokeWidth={1}
-      fill="none"
-    />
+        {generateStarFraction(fraction).map(({ path, key }: StarPart) => (
+          <path
+            key={key}
+            d={drawPath(scale, path)}
+            fillRule="evenodd"
+            fill="white"
+          />
+        ))}
+      </>
+    )}
+    {fraction < 1 && (
+      <path
+        d={drawPath(scale, fracWhole)}
+        stroke={COLOR_OUTLINE}
+        strokeWidth={1}
+        fill="none"
+      />
+    )}
   </svg>
 );
 
