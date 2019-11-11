@@ -1,5 +1,7 @@
 import memoize from 'memoize-one';
 
+import { Segment, StarPart } from './types';
+
 // http://mathworld.wolfram.com/Pentagram.html for the
 // geometry of a 5-pointed star
 const DIST_A = 1 / (2 + 2 * Math.sin(Math.PI / 10));
@@ -93,7 +95,7 @@ const F7_X_RIGHT = F7_X - LINE_LENGTH_DIFF * Math.sin(Math.PI / 10);
 const F8_X = (2 * DIST_A) + DIST_B;
 const F8_X_LEFT = F8_X - LINE_LENGTH_DIFF;
 
-export const fracWhole = [
+export const fracWhole: Segment[] = [
   ['M', POINT_A],
   ['A', [POINT_RADIUS, POINT_RADIUS], '0,0,1', POINT_A2],
   ['L', POLY_B],
@@ -112,14 +114,14 @@ export const fracWhole = [
   ['L', POINT_A],
 ];
 
-export const frac1 = (fracWidth: number) => ([
+export const frac1 = (fracWidth: number): Segment[] => ([
   ['M', POINT_E],
   ['A', [POINT_RADIUS, POINT_RADIUS], '0,0,1', POINT_E2],
   ['L', [fracWidth, DIST_P]],
   ['L', [fracWidth, DIST_P + (fracWidth * Math.tan(Math.PI / 5))]],
 ]);
 
-const frac2 = (fracWidth: number) => {
+const frac2 = (fracWidth: number): Segment[] => {
   const sectionWidth = fracWidth - F1_X;
 
   return [
@@ -138,7 +140,7 @@ const frac2 = (fracWidth: number) => {
   ];
 };
 
-const frac3 = (fracWidth: number) => {
+const frac3 = (fracWidth: number): Segment[] => {
   const sectionWidth = fracWidth - F2_X;
 
   return [
@@ -161,7 +163,7 @@ const frac3 = (fracWidth: number) => {
   ];
 };
 
-const frac4 = (fracWidth: number) => {
+const frac4 = (fracWidth: number): Segment[] => {
   const sectionWidth = fracWidth - F3_X;
 
   return [
@@ -180,7 +182,7 @@ const frac4 = (fracWidth: number) => {
   ];
 };
 
-const frac5 = (fracWidth: number) => {
+const frac5 = (fracWidth: number): Segment[] => {
   const sectionWidth = fracWidth - F4_X_LEFT;
   const sectionHeight = Math.sqrt(
     (POINT_RADIUS ** 2)
@@ -211,7 +213,7 @@ const frac5 = (fracWidth: number) => {
   ];
 };
 
-export const frac6 = (fracWidth: number) => ([
+export const frac6 = (fracWidth: number): Segment[] => ([
   ['M', [
     F4_X_RIGHT,
     DIST_P + DIST_B * Math.cos(Math.PI / 10)
@@ -232,7 +234,7 @@ export const frac6 = (fracWidth: number) => ([
   ]],
 ]);
 
-export const frac7 = (fracWidth: number) => ([
+export const frac7 = (fracWidth: number): Segment[] => ([
   ['M', [F5_X, DIST_P]],
   ['L', [fracWidth, DIST_P]],
   ['L', [
@@ -249,7 +251,7 @@ export const frac7 = (fracWidth: number) => ([
   ]],
 ]);
 
-export const frac8 = (fracWidth: number) => ([
+export const frac8 = (fracWidth: number): Segment[] => ([
   ['M', [F6_X, DIST_P]],
   ['L', [fracWidth, DIST_P]],
   ['L', [
@@ -262,7 +264,7 @@ export const frac8 = (fracWidth: number) => ([
   ]],
 ]);
 
-export const frac9 = (fracWidth: number) => ([
+export const frac9 = (fracWidth: number): Segment[] => ([
   ['M', [
     F6_X,
     DIST_P + DIST_B * Math.cos(Math.PI / 10),
@@ -284,7 +286,7 @@ export const frac9 = (fracWidth: number) => ([
   ]],
 ]);
 
-export const frac10 = [
+export const frac10: Segment[] = [
   ['M', [
     F7_X_LEFT,
     DIST_P + (DIST_B + DIST_A) * Math.cos(Math.PI / 10)
@@ -302,7 +304,7 @@ export const frac10 = [
   ]],
 ];
 
-export const frac11 = [
+export const frac11: Segment[] = [
   ['M', [F8_X_LEFT, DIST_P]],
   ['A', [POINT_RADIUS, POINT_RADIUS], '0,0,1', POINT_B2],
   ['L', [
@@ -311,7 +313,11 @@ export const frac11 = [
   ]],
 ];
 
-export const generateStarFraction = memoize((fraction: number) => {
+function notEmpty<Segment>(value: Segment | false): value is Segment {
+  return Boolean(value);
+}
+
+export const generateStarFraction = memoize((fraction: number): StarPart[] => {
   const fracWidth = fraction * WIDTH;
 
   return [
@@ -327,8 +333,8 @@ export const generateStarFraction = memoize((fraction: number) => {
     fraction > F7_X_LEFT && frac10,
     fraction > F8_X_LEFT && frac11,
   ]
-    .filter(Boolean)
-    .map((path, index) => ({
+    .filter(notEmpty)
+    .map((path, index): StarPart => ({
       path,
       key: `frac-${index}`,
     }));

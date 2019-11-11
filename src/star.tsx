@@ -1,14 +1,16 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import { COLOR_RATED, COLOR_OUTLINE } from './constants';
+import { Segment } from './types';
+
+import { COLOR_RATED, COLOR_OUTLINE, DEFAULT_SCALE } from './constants';
 
 import {
   fracWhole,
   generateStarFraction,
 } from './svg';
 
-const drawPath = (scale, path) => path
+const drawPath = (scale: number = DEFAULT_SCALE, path: Segment[]): string => path
   .map(([op, ...points]) => `${op} ${points
     .map((value) => {
       if (Array.isArray(value)) {
@@ -21,7 +23,13 @@ const drawPath = (scale, path) => path
   }`)
   .join(' ');
 
-const Star = ({ fraction, scale, color }) => (
+interface IProps {
+  fraction: number,
+  scale?: number,
+  color: string,
+}
+
+const Star: React.FC<IProps> = ({ fraction, scale, color }) => (
   <svg width={scale} height={scale}>
     {fraction === 1 && (
       <path
@@ -57,16 +65,24 @@ Star.propTypes = {
 };
 
 Star.defaultProps = {
-  scale: 24,
+  scale: DEFAULT_SCALE,
 };
 
-function StarContainer({
+interface ContainerProps {
+  fraction: number,
+  onHover: (rating: number) => void,
+  onChange: (rating: number) => void,
+  hoverRating: number,
+  color: string,
+}
+
+export function StarContainer({
   fraction,
   onHover,
   onChange,
   hoverRating,
   color,
-}) {
+}: ContainerProps) {
   const onMouseOver = useCallback(() => onHover(hoverRating), [onHover, hoverRating]);
   const onClick = useCallback(() => onChange(hoverRating), [onChange, hoverRating]);
   const onKeyDown = useCallback((event) => {
@@ -100,5 +116,3 @@ StarContainer.propTypes = {
   hoverRating: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
 };
-
-export default StarContainer;

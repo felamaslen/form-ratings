@@ -1,27 +1,35 @@
 import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'formik';
+import { connect, FormikContextType } from 'formik';
 
-import Star from './star';
+import { StarContainer as Star } from './star';
 import { COLOR_RATED, COLOR_HOVER } from './constants';
 
 const flex = {
   display: 'inline-flex',
 };
 
-const RatingsField = ({
+interface IProps {
+  name: string,
+  value?: number,
+}
+
+const RatingsField: React.FC<IProps & {
+  formik: FormikContextType<{ [x: string]: {}; }>
+}> = ({
   name,
   value,
   formik: { setFieldValue },
 }) => {
+  const numberValue = Number(value);
   const onChange = useCallback((newValue) => setFieldValue(name, newValue),
     [name, setFieldValue]);
 
-  const [hoverRating, setHoverRating] = useState(null);
+  const [hoverRating, setHoverRating] = useState<number | null>(null);
 
   const onReset = useCallback(() => setHoverRating(null), []);
 
-  const rating = hoverRating || value;
+  const rating = hoverRating || numberValue;
   const color = hoverRating
     ? COLOR_HOVER
     : COLOR_RATED;
@@ -58,9 +66,6 @@ const RatingsField = ({
 RatingsField.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.number,
-  formik: PropTypes.shape({
-    setFieldValue: PropTypes.func.isRequired,
-  }).isRequired,
 };
 
 RatingsField.defaultProps = {
