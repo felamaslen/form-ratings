@@ -31,17 +31,22 @@ const POINT_C = [
   DIST_P + (DIST_B + DIST_A - LINE_LENGTH_DIFF) * Math.sin((2 * Math.PI) / 5),
 ];
 const POINT_C2 = [
-  DIST_A + DIST_B + (DIST_B + DIST_A) * Math.cos((2 * Math.PI) / 5)
-    - LINE_LENGTH_DIFF * Math.cos(Math.PI / 5),
-  DIST_P + (DIST_B + DIST_A) * Math.sin((2 * Math.PI) / 5)
-    - LINE_LENGTH_DIFF * Math.sin(Math.PI / 5),
+  DIST_A +
+    DIST_B +
+    (DIST_B + DIST_A) * Math.cos((2 * Math.PI) / 5) -
+    LINE_LENGTH_DIFF * Math.cos(Math.PI / 5),
+  DIST_P +
+    (DIST_B + DIST_A) * Math.sin((2 * Math.PI) / 5) -
+    LINE_LENGTH_DIFF * Math.sin(Math.PI / 5),
 ];
 
 const POINT_D = [
-  DIST_A - (DIST_B + DIST_A) * Math.cos((2 * Math.PI) / 5)
-    + LINE_LENGTH_DIFF * Math.cos(Math.PI / 5),
-  DIST_P + (DIST_B + DIST_A) * Math.sin((2 * Math.PI) / 5)
-    - LINE_LENGTH_DIFF * Math.sin(Math.PI / 5),
+  DIST_A -
+    (DIST_B + DIST_A) * Math.cos((2 * Math.PI) / 5) +
+    LINE_LENGTH_DIFF * Math.cos(Math.PI / 5),
+  DIST_P +
+    (DIST_B + DIST_A) * Math.sin((2 * Math.PI) / 5) -
+    LINE_LENGTH_DIFF * Math.sin(Math.PI / 5),
 ];
 const POINT_D2 = [
   DIST_A - (DIST_B + DIST_A - LINE_LENGTH_DIFF) * Math.cos((2 * Math.PI) / 5),
@@ -86,18 +91,10 @@ export const fracWhole: Segment[] = [
   ['L', POINT_A],
 ];
 
-export const generateStarFraction = (fraction: number): StarPart[] => ([
+export const generateStarFraction = (fraction: number): StarPart[] => [
   {
     key: 'outline',
-    path: [
-      ['M', [0, 0]],
-      ['L', [1, 0]],
-      ['L', [1, 1]],
-      ['L', [0, 1]],
-      ['z'],
-      ...fracWhole,
-      ['z'],
-    ],
+    path: [['M', [0, 0]], ['L', [1, 0]], ['L', [1, 1]], ['L', [0, 1]], ['z'], ...fracWhole, ['z']],
   },
   {
     key: 'mask',
@@ -108,4 +105,4 @@ export const generateStarFraction = (fraction: number): StarPart[] => ([
       ['L', [fraction, 1]],
     ],
   },
-]);
+];
