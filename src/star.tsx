@@ -2,7 +2,7 @@ import React, { FunctionComponent, useCallback } from 'react';
 
 import { Segment, StarPart } from './types';
 
-import { COLOR_RATED, COLOR_OUTLINE, DEFAULT_SCALE } from './constants';
+import { COLOR_RATED, DEFAULT_SCALE } from './constants';
 
 import { fracWhole, generateStarFraction } from './svg';
 
@@ -46,7 +46,7 @@ export const Star: FunctionComponent<StarProps> = ({
       </>
     )}
     {fraction < 1 && (
-      <path d={drawPath(scale, fracWhole)} stroke={COLOR_OUTLINE} strokeWidth={1} fill="none" />
+      <path d={drawPath(scale, fracWhole)} stroke={color} strokeWidth={1} fill="none" />
     )}
   </svg>
 );
