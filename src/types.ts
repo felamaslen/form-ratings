@@ -1,6 +1,6 @@
-export type Segment = (string|number[])[];
+export type Segment = (string | number[])[];
 
 export interface StarPart {
-  path: Segment[],
-  key: string,
+  path: Segment[];
+  key: string;
 }

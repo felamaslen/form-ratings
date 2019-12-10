@@ -1,11 +1,19 @@
 {
   "compilerOptions": {
-    "lib": ["es6", "dom"],
     "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "jsx": "react",
-    "noImplicitReturns": true,
+    "allowJs": true,
+    "noEmit": true,
+    "strict": true,
+    "isolatedModules": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "lib": ["es6", "dom"]
   },
   "include": [
     "src/**/*.ts",
